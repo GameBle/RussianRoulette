@@ -1,8 +1,8 @@
 // all the audio files
 const sounds = [
   "sounds/CONTINUE_SOUND_1.mp3",
-  "sounds/CONTINUE_SOUND_2.wav",
-  "sounds/CONTINUE_SOUND_3.wav",
+  "sounds/CONTINUE_SOUND_2.mp3",
+  "sounds/CONTINUE_SOUND_3.mp3",
   "sounds/LOST_SOUND.mp3",
   "sounds/CONTINUE_SOUND_4.mp3",
   "sounds/CONTINUE_SOUND_5.mp3",
@@ -28,7 +28,7 @@ let players = JSON.parse(localStorage.getItem("players"));
 console.log(players);
 
 for (let i = 0; i < players.length; i++) {
-  let element = document.createElement("div");
+  let element = document.createElement("div"); 
   element.className = "child";
   element.id = `player${i + 1}`;
   element.innerText = `${players[i]}`;
@@ -96,14 +96,19 @@ for (let i = 0; i < 7; i++) {
             pUI.remove();
             let playa = document.getElementsByClassName("child");
             //console.log(playa);
+            if (indexToRemove >= players.length) {
+                indexToRemove = 0;
+            } else if (indexToRemove > 0) {
+                indexToRemove--;
+            }
             for (let j = 0; j < playa.length; j++) {
                 playa[j].id = `player${j+1}`;
                 //console.log(playa[j].id);
             }
         }
     //
-    if(players.length == 1){
-        console.log(`winner ${players[0]}`);
+    if (players.length == 1) {
+        alert(`Winner: ${players[0]}`);
     }
     console.log(indexToRemove);
     if (indexToRemove == players.length-1 || indexToRemove == players.length) {

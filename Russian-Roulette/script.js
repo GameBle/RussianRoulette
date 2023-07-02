@@ -21,26 +21,25 @@ beginBtn.addEventListener("click",(e)=>{
 
     let nextBtn = document.querySelector(".next-btn");
 
-    nextBtn.addEventListener("click",(e)=>{
+    nextBtn.addEventListener("click", (e) => {
         let playerRef = document.querySelector(".player-name");
-        let playerName = playerRef.value;
-        if(!playerName){
-            alert("please enter a valid player name");
+        let playerName = playerRef.value.trim();
+        if (!playerName) {
+            alert("Please enter a valid player name");
             return;
         }
-        if(players.has(playerName)){
-            alert("This name is already entered")
+        if (players.has(playerName)) {
+            alert("This name is already entered");
+            return;
         }
         players.add(playerName);
-         //console.log(playerName);
         playerRef.value = "";
         numOfPlayers--;
-        if(numOfPlayers==0){
-            console.log(players)
-            console.log(JSON.stringify(players));
-            localStorage.setItem("players",JSON.stringify(players))
+        if (numOfPlayers === 0) {
+            localStorage.setItem("players", JSON.stringify(Array.from(players)));
             window.location.href = "./game.html";
             return;
         }
-    })
+    });
+    
 })
